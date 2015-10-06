@@ -410,9 +410,14 @@ class DAO
 	// supprime l'utilisateur dans la bdd
 	// modifié par Jim le 6/5/2015
 	public function supprimerUtilisateur($name)
-	{	// A FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	}	
-	
+    {
+		$txt_req = "Delete from mrbs_users where name = :name ";
+		$req = $this->cnx->prepare($txt_req);
+		// liaison de la requÃªte et de ses paramÃ¨tres
+		$req->bindValue("name", utf8_decode($name), PDO::PARAM_STR);
+		$ok = $req->execute();
+		return $ok;	
+	}
 	// fournit la liste des salles disponibles à la réservation
 	// le résultat est fourni sous forme d'une collection d'objets Salle
 	// modifié par Jim le 6/5/2015

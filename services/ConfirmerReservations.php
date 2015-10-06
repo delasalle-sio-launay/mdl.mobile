@@ -82,6 +82,10 @@ else
 	unset($dao);
 }
 
+$doc->formatOutput = true;
+echo $doc->saveXML();
+exit;
+
 function TraitementAnormal($msg)
 {	// redéclaration des données globales utilisées dans la fonction
 global $doc;
@@ -111,9 +115,8 @@ function TraitementNormal($digicode, $numRes)
 	$message = "La réservation a bien été enregistré, le digicode est : " . $digicode;
 	$user = $dao->getUtilisateur($nom);
 	$email = $user->getEmail();
-	Outils::envoyerMail($email, "Confirmation réservation", $message, "delasalle.sio.launay.a@gmail.com")
-	return;
+	Outils::envoyerMail($email, "Confirmation réservation", $message, "delasalle.sio.launay.a@gmail.com");
+    return;
 }
-
 
 ?>
